@@ -10,20 +10,24 @@ echo  "Enter your choice : "
 read choice
 
 case $choice in
-"1")  echo  "You have entered choice $choice"
+"1")  echo  "Choice $choice : Create a New Address Book"
       echo  "Enter the name of file to create"
       read filename 
       touch $filename
       echo -e "name \t number \t address" | cat >> $filename
 ;;
-"2")  echo  "Enter the name of file"
-      read filename  
-      echo  "You have entered choice $choice"
-      cat $filename
-;;
-"3")  echo  "You have entered choice $choice"
+"2")  echo  "Choice $choice : View Records"
       echo  "Enter the name of file"
       read filename  
+      cat $filename
+;;
+"3")  echo  "Choice $choice : Insert new Record"
+      echo  "Enter the name of file"
+      read filename  
+
+      flag=1
+      while [ "$flag" -gt 0 ]
+      do
       echo "Enter Name"
       read name
       echo "Enter Phone Number of $name"
@@ -31,9 +35,11 @@ case $choice in
       echo "Enter Address of $name"
       read address
       echo -e "$name \t $number \t $address" | cat >> $filename
-
+      echo "Enter 0 to Stop, 1 to Enter next"
+      read  flag
+      done
 ;;
-"4")  echo  "You have entered choice $choice"
+"4")  echo  "Choice $choice : Delete a Record"
       echo  "Enter the name of file"
       read filename 
       echo "Delete record : Enter Name/Phone Number"
@@ -45,7 +51,7 @@ case $choice in
       rm $temp
 
 ;;
-"5")  echo  "You have entered choice $choice"
+"5")  echo  "Choice $choice : Modify a Record"
       echo  "Enter the name of file"
       read filename 
       echo "Modify record : Enter Name/Phone Number"
